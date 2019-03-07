@@ -62,6 +62,8 @@
 			.append($toggleOn, $toggleOff, $toggleHandle)
 		var $toggle = $('<div class="toggle btn" data-toggle="toggle">')
 			.addClass( this.$element.prop('checked') ? this._onstyle : this._offstyle+' off' )
+   .addClass( this.$element.prop('readonly') ? 'disabled' : '' )
+   .addClass( this.$element.prop('disabled') ? 'inactive' : '' )
 			.addClass(size).addClass(this.options.style)
 			.attr('title', this.$element.prop('title'))
 
@@ -123,14 +125,14 @@
 	}
 
 	Toggle.prototype.on = function (silent) {
-		if (this.$element.prop('disabled')) return false
+		if (this.$element.prop('disabled') || this.$element.prop('readonly')) return false
 		this.$toggle.removeClass(this._offstyle + ' off').addClass(this._onstyle)
 		this.$element.prop('checked', true)
 		if (!silent) this.trigger()
 	}
 
 	Toggle.prototype.off = function (silent) {
-		if (this.$element.prop('disabled')) return false
+		if (this.$element.prop('disabled') || this.$element.prop('readonly')) return false
 		this.$toggle.removeClass(this._onstyle).addClass(this._offstyle + ' off')
 		this.$element.prop('checked', false)
 		if (!silent) this.trigger()
