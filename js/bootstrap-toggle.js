@@ -76,6 +76,16 @@
 
 		var width = this.options.width || Math.max($toggleOn.outerWidth(), $toggleOff.outerWidth())+($toggleHandle.outerWidth()/2)
 		var height = this.options.height || Math.max($toggleOn.outerHeight(), $toggleOff.outerHeight())
+
+        // Outerwidth/height fix for hidden elements
+        if (width == 0 || height == 0) {
+            var toggleOnSize = getOuterSize($toggleOn);
+            var toggleOffSize = getOuterSize($toggleOff);
+            var toggleHandleSize = getOuterSize($toggleHandle);
+            width = this.options.width || Math.max(toggleOnSize.width, toggleOffSize.width) + (toggleHandleSize.width / 2);
+            height = this.options.height || Math.max(toggleOnSize.height, toggleOffSize.height) + (toggleHandleSize.height / 2);
+        }
+
 		$toggleOn.addClass('toggle-on')
 		$toggleOff.addClass('toggle-off')
 		this.$toggle.css({ width: width, height: height })
@@ -86,6 +96,26 @@
 		this.update(true)
 		this.trigger(true)
 	}
+    
+    function getOuterSize(obj) {
+        if ($(obj).length == 0) {
+            return false;
+        }
+
+        var clone = obj.clone();
+        clone.css({
+            visibility: 'hidden',
+            width: '',
+            height: '',
+            maxWidth: '',
+            maxHeight: ''
+        });
+        $('body').append(clone);
+        var width = clone.outerWidth();
+        var height = clone.outerHeight();
+        clone.remove();
+        return {width: width, height: height};
+    }
 
 	Toggle.prototype.toggle = function () {
 		if (this.$element.prop('checked')) this.off()
