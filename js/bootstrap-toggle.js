@@ -203,13 +203,13 @@
 	})
 
 	$(document)
-	  .on('click.bs.toggle', 'div[data-toggle^=toggle]', function(e) {
+	  .on('touchstart.bs.toggle click.bs.toggle', 'div[data-toggle^=toggle]', function(e) {
             var $checkbox = $(this).find('input[type=checkbox]')
             $checkbox.bootstrapToggle('toggle')
             e.preventDefault()
             e.stopPropagation()
 	  })
-	  .on('click.bs.toggle', 'label[for]', function(e) {
+	  .on('touchstart.bs.toggle click.bs.toggle', 'label[for]', function(e) {
 	    var $checkbox   = $('#' + $(e.currentTarget).attr('for'));
 	    if (!$checkbox[0] || !$checkbox.data('bs.toggle')) return;
 	    $checkbox.bootstrapToggle('toggle')
