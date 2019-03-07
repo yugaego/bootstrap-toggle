@@ -1,5 +1,5 @@
 /*! ========================================================================
- * Bootstrap Toggle: bootstrap2-toggle.js v2.2.0
+ * Bootstrap Toggle: bootstrap2-toggle.js v2.2.3
  * http://www.bootstraptoggle.com
  * ========================================================================
  * Copyright 2014 Min Hur, The New York Times Company
@@ -19,7 +19,7 @@
 		this.render()
 	}
 
-	Toggle.VERSION  = '2.2.0'
+	Toggle.VERSION  = '2.2.3'
 
 	Toggle.DEFAULTS = {
 		on: 'On',
