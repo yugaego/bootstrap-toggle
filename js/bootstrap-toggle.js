@@ -201,7 +201,7 @@
 	// ===============
 
 	$(function() {
-		$('input[type=checkbox][data-toggle^=toggle]').bootstrapToggle()
+		$('input[type=checkbox][data-toggle^=toggle]:not(\'.tiny-toggle\')').bootstrapToggle()
 	})
 
 	$(document)
